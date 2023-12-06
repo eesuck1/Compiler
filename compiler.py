@@ -168,10 +168,10 @@ class Compiler:
 
             return
 
-        self._compilation_graph_[index].append(f"goto {self._memory_.get(address)}")
+        self._compilation_graph_[index].append(f"goto {int(address) - 1}")
 
     def parse_mark(self, mark: str, index: int) -> None:
-        self._compilation_graph_[index].append(f"goto {self._memory_.get(mark) + 1}")
+        self._compilation_graph_[index].append(f"goto {self._memory_.get(mark)}")
 
     def compile(self, file_path: str) -> None:
         with open(file_path, "r") as file:
@@ -358,7 +358,7 @@ class Compiler:
         print(self._memory_.get(first))
 
     def goto(self, first: str) -> None:
-        self._program_counter_ = self.validate_value(first) - 1
+        self._program_counter_ = self.validate_value(first)
 
     def if_then(self) -> int:
         return not self._if_flag_
