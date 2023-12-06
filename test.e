@@ -2,9 +2,15 @@
 
 factorial -> 1
 counter -> 5
+
 result -> 0
 n -> 10
-a -> -1 * -2
+
+a -> 0
+\\ scan(a)
+
+\\ scan($7)
+\\ print($7)
 
 \\ test -> 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 

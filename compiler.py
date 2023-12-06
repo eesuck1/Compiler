@@ -133,10 +133,7 @@ class Compiler:
         try:
             self._compilation_graph_[index].append(f"scan ${int(line[5:-1])}")
         except ValueError:
-            if line[5:-1] in self._memory_:
-                self._compilation_graph_[index].append(f"scan {line[5:-1]}")
-            else:
-                raise Exception("Unknown variable")
+            self._compilation_graph_[index].append(f"scan {line[5:-1]}")
 
     def parse_if(self, line: list[str, ...], index: int) -> None:
         expression = []
@@ -350,12 +347,16 @@ class Compiler:
             print(error)
 
     def scan(self, destination: str) -> None:
-        self._memory_pointer_ += 1
-
-        self._memory_[destination[1:]] = self.validate_value(input(">> "))
+        if destination[0] == "$":
+            self._memory_[destination[1:]] = self.validate_value(input(">> "))
+        else:
+            self._memory_[destination] = self.validate_value(input(">> "))
 
     def my_print(self, first: str) -> None:
-        print(self._memory_.get(first))
+        if first[0] == "$":
+            print(self._memory_.get(first[1:]))
+        else:
+            print(self._memory_.get(first))
 
     def goto(self, first: str) -> None:
         self._program_counter_ = self.validate_value(first)
