@@ -216,7 +216,7 @@ class Compiler:
                 elif "goto" in line and "if" not in line:
                     self.parse_goto(splitted, index)
                 else:
-                    print(f"""Seems statement {index}: {line} has no effect""")
+                    print(f"""Seems statement {index + 1}: {line} has no effect""")
 
     def run(self) -> int:
         while self._program_counter_ < len(self._compilation_graph_):
