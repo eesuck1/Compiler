@@ -113,6 +113,8 @@ class Compiler:
                         line.pop(index - 1)
                         line[index - 1] = f"${self._memory_pointer_}"
 
+                        continue
+
     def parse_equality(self, line: list[str, ...], index: int) -> None:
         if len(line) < 3:
             raise Exception("Incorrect equality using")

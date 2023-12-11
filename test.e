@@ -6,13 +6,17 @@ counter -> 5
 result -> 0
 n -> 10
 
-a -> 0
-\\ scan(a)
+scan(a)
+print(a)
 
-\\ scan($7)
-\\ print($7)
+scan($7)
+print($7)
 
-\\ test -> 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+test -> 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
+print(test)
+
+division -> 1000 / 5 / 4
+print(division)
 
 loop:
 if n == 0 then goto power_end
@@ -35,4 +39,3 @@ goto factorial_loop
 end:
 print(result)
 print(factorial)
-print(a)
