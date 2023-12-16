@@ -7,7 +7,7 @@ def main():
     compiler = Compiler()
 
     if len(sys.argv) == 1:
-        compiler.compile("test.e")
+        compiler.compile("./TestPrograms/third.e")
     elif len(sys.argv) == 2:
         compiler.compile(sys.argv[1])
     else:

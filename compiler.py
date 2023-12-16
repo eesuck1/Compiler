@@ -227,7 +227,7 @@ class Compiler:
                     self.parse_print(line, index)
                 elif "scan" in line:
                     self.parse_scan(line, index)
-                elif "if" in line:
+                elif "if " in line:
                     self.parse_if(splitted, index)
                 elif "goto" in line and "if" not in line:
                     self.parse_goto(splitted, index)

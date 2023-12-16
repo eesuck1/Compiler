@@ -17,7 +17,7 @@ print(test)
 
 
 test_brackets -> ((1 + 2) * (10 / 2)) * (7 / 3) % 7
-\\ 15 * 2 % 7
+\\ 15 * 2 % 7 = 30 % 7 = 2
 print(test_brackets)
 
 division -> 1000 / (5 / 4)
