@@ -57,19 +57,9 @@ class Compiler:
 
         return False
 
-    def format_line(self, line: str) -> str:
-        # line = line.replace(" ", "")
-        #
-        # for symbol in list(self._command_mapping_) + ["then"]:
-        #     line = line.replace(symbol, " " + symbol + " ")
-        #
-        # if "if" in line:
-        #     line = line.replace("if", "if ")
-        #
-        # elif "goto" in line:
-        #     line = line.replace("goto", "goto ")
-
-        return line
+    @staticmethod
+    def format_line(line: str) -> str:
+        return " ".join(line.split())
 
     def is_mark(self, line: str) -> bool:
         return line in self._memory_ and line[0] == "&"
@@ -172,6 +162,21 @@ class Compiler:
     def parse_mark(self, mark: str, index: int) -> None:
         self._compilation_graph_[index].append(f"goto {self._memory_.get(mark)}")
 
+    @staticmethod
+    def find_brackets(line: str) -> tuple[str, int, int]:
+        start = 0
+        end = len(line)
+
+        for index, symbol in enumerate(line):
+            if symbol == "(":
+                start = index
+            elif symbol == ")":
+                end = index
+
+                break
+
+        return line[start + 1:end], start, end
+
     def compile(self, file_path: str) -> None:
         with open(file_path, "r") as file:
             lines = file.readlines()
@@ -204,6 +209,15 @@ class Compiler:
                         continue
                     else:
                         raise Exception("Unknown mark name")
+
+                if "(" in line and not ("print" in line or "scan" in line):
+                    while "(" in line:
+                        formatted, start, end = self.find_brackets(line)
+                        splitted = formatted.split(" ")
+
+                        self.parse_expression(splitted, index)
+
+                        line = line.replace(line[start:end + 1], f"${self._memory_pointer_}")
 
                 splitted = line.split(" ")
 

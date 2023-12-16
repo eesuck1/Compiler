@@ -6,16 +6,21 @@ counter -> 5
 result -> 0
 n -> 10
 
-scan(a)
+\\ scan(a)
 print(a)
 
-scan($7)
+\\ scan($7)
 print($7)
 
 test -> 1 * 2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10
 print(test)
 
-division -> 1000 / 5 / 4
+
+test_brackets -> ((1 + 2) * (10 / 2)) * (7 / 3) % 7
+\\ 15 * 2 % 7
+print(test_brackets)
+
+division -> 1000 / (5 / 4)
 print(division)
 
 loop:
